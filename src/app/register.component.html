@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Register</div>
+  <div class="panel-content">
+    <div class="container-fluid">
+      <form style="margin-top: 15px;" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col">
+            <input type="text" class="form-control" [ngClass]="{'error': isValid('firstName')}" placeholder="First name" formControlName="firstName">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" [ngClass]="{'error': isValid('lastName')}" placeholder="Last name" formControlName="lastName">
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="email" class="form-control" [ngClass]="{'error': isValid('email')}" placeholder="Email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" [ngClass]="{'error': isValid('password')}" placeholder="Password" formControlName="password">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" [ngClass]="{'error': isValid('confirmPassword')}" placeholder="Confirm Password" formControlName="confirmPassword">
+        </div>
+        <button class="btn btn-primary">Register</button>
+      </form>
+    </div>
+    <br>
+  </div>
+</div>

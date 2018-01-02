@@ -9,6 +9,10 @@ import { Observable } from 'rxjs/Rx';
     .error {
       border: 2px solid red;
     }
+
+    .err-msg {
+      color: red;
+    }
   `]
 })
 
@@ -20,12 +24,13 @@ export class RegisterComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required, emailValid()],
-      password: ['', Validators.required],
+      password: ['', Validators.required, passwordValid()],
       confirmPassword: ['', Validators.required]
     }, {validator: matchingFields('password', 'confirmPassword')});
   }
 
   onSubmit() {
+    console.log(this.form.errors);
     console.log(this.form.valid);
   }
 
@@ -38,6 +43,15 @@ function emailValid() {
   return control => {
     var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return Observable.of(regex.test(control.value) ? null : { inValidEmail: true });
+    // return regex.test(control.value) ? null : { inValidEmail: true };
+  }
+}
+
+function passwordValid() {
+  return control => {
+    var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return Observable.of(regex.test(control.value) ? null : {inValidPassword: true});
+    // return regex.test(control.value) ? null : { inValidPassword: true };
   }
 }
 

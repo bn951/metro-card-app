@@ -6,18 +6,31 @@
         <div class="row">
           <div class="col">
             <input type="text" class="form-control" [ngClass]="{'error': isValid('firstName')}" placeholder="First name" formControlName="firstName">
+            <div *ngIf="isValid('firstName')" class="err-msg">
+              First Name is required
+            </div>
           </div>
           <div class="col">
             <input type="text" class="form-control" [ngClass]="{'error': isValid('lastName')}" placeholder="Last name" formControlName="lastName">
+            <div *ngIf="isValid('lastName')" class="err-msg">
+              Last Name is required
+            </div>
           </div>
         </div>
         <br>
         <div class="form-group">
           <input type="email" class="form-control" [ngClass]="{'error': isValid('email')}" placeholder="Email" formControlName="email" email>
+          <div *ngIf="isValid('email')" class="err-msg">
+            Please enter a valid email
+          </div>
         </div>
         <div class="form-group">
           <input type="password" class="form-control" [ngClass]="{'error': isValid('password')}" placeholder="Password" formControlName="password">
+          <div *ngIf="isValid('password')" class="err-msg">
+            Password must be 8 characters long, atleast one number, and no special characters
+          </div>
         </div>
+        <span *ngIf="form.errors?.mismatchedFields" style="color: red;">Passwords do not match</span>
         <div class="form-group">
           <input type="password" class="form-control" [ngClass]="{'error': isValid('confirmPassword')}" placeholder="Confirm Password" formControlName="confirmPassword">
         </div>

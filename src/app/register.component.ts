@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'register',
@@ -19,7 +20,7 @@ import { Observable } from 'rxjs/Rx';
 export class RegisterComponent {
   form;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
     this.form = fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -30,8 +31,9 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.form.errors);
-    console.log(this.form.valid);
+    /*console.log(this.form.errors);
+    console.log(this.form.valid);*/
+    this.auth.register(this.form.value);
   }
 
   isValid(control) {

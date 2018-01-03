@@ -9,10 +9,11 @@ var authRoutes = require('./routes/auth');
 var PORT = 4201;
 
 app.use(bodyParser.json());
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-});*/
+  next();
+});
 
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);

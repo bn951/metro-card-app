@@ -33,7 +33,9 @@ export class RegisterComponent {
   onSubmit() {
     /*console.log(this.form.errors);
     console.log(this.form.valid);*/
-    this.auth.register(this.form.value);
+    if(this.form.valid) {
+      this.auth.register(this.form.value);
+    }
   }
 
   isValid(control) {

@@ -14,6 +14,7 @@ export class AuthService {
 
   register(user) {
     console.log('clicked');
+    delete user.confirmPassword;
     this.http.post(this.BASE_URL + "/register", user).subscribe(res => {
       console.log(res);
     });
